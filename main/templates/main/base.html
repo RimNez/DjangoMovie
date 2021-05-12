@@ -47,12 +47,27 @@
         </li>
         {% endif %}
       </ul>
-      <form class="d-flex" method="GET" action="{% url 'main:home' %}">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="title">
+       <form class="d-flex" method="GET" action="{% url 'main:home' %}">
+        <div class="form-check" style="width:100px;padding-top: 10px;color:lightgrey;opacity: 90%;">
+      <input class="form-check-input" type="radio" name="condition" id="mauvais" value="mauvais">
+      <label class="form-check-label" for="mauvais">
+    mauvais
+      </label>
+      </div>
+      <div class="form-check" style="width:100px;padding-top: 10px;color:lightgrey;opacity: 90%;">
+      <input class="form-check-input" type="radio" name="condition" id="acceptable" value="acceptable" >
+      <label class="form-check-label" for="acceptable">
+    acceptable
+      </label>
+     </div>
+         <div style="width:100px; padding-left: 4px;padding-right:1.5px;">
+        <input class="form-control me-2"  type="search" placeholder="Search" aria-label="Search" name="title"></div>
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
     </div>
   </div>
+
+
 </nav>
     {% block content %}
 

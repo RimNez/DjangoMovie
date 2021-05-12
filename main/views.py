@@ -1,26 +1,32 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django import forms
 from .models import *
 from .forms import *
 import operator
+from tkinter import *
 
 
 # Create your views here.
 def home(request):
     query = request.GET.get("title")
+    radio_value = request.GET.get("condition")
     allMovies = None
+    # allMovies = None
+    #allMovies = []
     if query:
         allMovies = Movie.objects.filter(intitulé__icontains=query)
-
+        if radio_value == "acceptable":
+            allMovies = Movie.objects.exclude(nombreSorties=0).filter(intitulé__icontains=query)
+        else:
+            allMovies = Movie.objects.filter(nombreSorties=0, intitulé__icontains=query)
     else:
         allMovies = Movie.objects.all()  # ==select * from movie
 
     ordered = sorted(allMovies, key=operator.attrgetter('nombreSorties'), reverse=True)
-
     context = {
-            "movies": ordered
+            "movies": allMovies
     }
-
     return render(request, 'main/index.html', context)
 
 
