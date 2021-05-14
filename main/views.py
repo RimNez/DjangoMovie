@@ -12,20 +12,18 @@ def home(request):
     query = request.GET.get("title")
     radio_value = request.GET.get("condition")
     allMovies = None
-    # allMovies = None
-    #allMovies = []
     if query:
         allMovies = Movie.objects.filter(intitulé__icontains=query)
         if radio_value == "acceptable":
             allMovies = Movie.objects.exclude(nombreSorties=0).filter(intitulé__icontains=query)
         else:
-            allMovies = Movie.objects.filter(nombreSorties=0, intitulé__icontains=query)
+            allMovies = Movie.objects.filter(nombreSorties=0).filter(intitulé__icontains=query)
     else:
         allMovies = Movie.objects.all()  # ==select * from movie
 
-    ordered = sorted(allMovies, key=operator.attrgetter('nombreSorties'), reverse=True)
+    ordered = sorted(allMovies, key=operator.attrgetter("nombreSorties"), reverse=True)
     context = {
-            "movies": allMovies
+            "movies": ordered
     }
     return render(request, 'main/index.html', context)
 

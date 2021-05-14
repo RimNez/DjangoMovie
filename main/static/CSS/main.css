@@ -6,16 +6,3 @@
       #backdrop{
         background-color: #ede8e8;
       }
-      .width-radio{
-          width   : 75%;
-          margin  : 20px;
-          padding : 50px;
-          opacity : 0;
-          color: #4ac1f7;
-      }
-      .width-radio2{
-          width   : 75px;
-          margin  : 0;
-          padding : 0;
-          opacity : 0;
-      }
